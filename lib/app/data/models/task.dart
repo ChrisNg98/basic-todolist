@@ -1,10 +1,11 @@
+import 'package:basic_todolist/app/data/models/todo.dart';
 import 'package:equatable/equatable.dart';
 
 class Task extends Equatable {
   final String title;
   final int icon;
   final String color;
-  final List<dynamic>? todos;
+  final List<Todo>? todos;
 
   ///CONSTRUCTOR
   const Task({
@@ -18,7 +19,7 @@ class Task extends Equatable {
     String? title,
     int? icon,
     String? color,
-    List<dynamic>? todos,
+    List<Todo>? todos,
   }) {
     return Task(
       title: title ?? this.title,
@@ -33,7 +34,7 @@ class Task extends Equatable {
       title: json['title'] as String,
       icon: json['icon'] as int,
       color: json['color'] as String,
-      todos: json['todos'] as List<dynamic>?,
+      todos: json['todos'] != null ? (json['todos'] as List).map((e) => Todo.fromJson(e)).toList() : null,
     );
   }
   Map<String, dynamic> toJson() {

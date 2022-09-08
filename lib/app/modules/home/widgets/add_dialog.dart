@@ -1,6 +1,7 @@
 import 'package:basic_todolist/app/core/utils/extensions.dart';
 import 'package:basic_todolist/app/modules/home/controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 class AddDialog extends StatelessWidget {
@@ -18,14 +19,39 @@ class AddDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  onPressed: () => Get.back(),
-                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Get.back();
+                    homeCtrl.newTaskTextController.clear();
+                    homeCtrl.changeTask(null);
+                  },
+                  icon: const Icon(Icons.close),
                 ),
                 TextButton(
                   style: ButtonStyle(
                     overlayColor: MaterialStateProperty.all(Colors.transparent),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (homeCtrl.newTaskTextController.text.isNotEmpty) {
+                      if (homeCtrl.task.value == null) {
+                        EasyLoading.showError('Please select a task type');
+                      } else {
+                        var success = homeCtrl.updateTask(
+                          homeCtrl.task.value!,
+                          homeCtrl.newTaskTextController.text,
+                        );
+                        if (success) {
+                          Get.back();
+                          homeCtrl.newTaskTextController.clear();
+                          homeCtrl.changeTask(null);
+                          EasyLoading.showSuccess('Todo item added successfully');
+                        } else {
+                          EasyLoading.showError('Todo item already exists');
+                        }
+                      }
+                    } else {
+                      EasyLoading.showError('Please enter a task title');
+                    }
+                  },
                   child: Text(
                     'Done',
                     style: TextStyle(fontSize: 14.0.sp),
@@ -47,7 +73,7 @@ class AddDialog extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.0.percentWidth),
             child: TextFormField(
-              controller: homeCtrl.newTaskController,
+              controller: homeCtrl.newTaskTextController,
               decoration: InputDecoration(
                 hintText: 'Enter your task',
                 hintStyle: TextStyle(fontSize: 14.0.sp),
@@ -91,21 +117,28 @@ class AddDialog extends StatelessWidget {
                         horizontal: 5.0.percentWidth,
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
-                            IconData(
-                              element.icon,
-                              fontFamily: 'MaterialIcons',
-                            ),
-                            color: HexColor.fromHex(element.color),
-                          ),
-                          SizedBox(width: 3.0.percentWidth),
-                          Text(
-                            element.title,
-                            style: TextStyle(
-                              fontSize: 12.0.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          Row(
+                            children: [
+                              Icon(
+                                IconData(
+                                  element.icon,
+                                  fontFamily: 'MaterialIcons',
+                                ),
+                                color: HexColor.fromHex(element.color),
+                              ),
+                              SizedBox(
+                                width: 3.0.percentWidth,
+                              ),
+                              Text(
+                                element.title,
+                                style: TextStyle(
+                                  fontSize: 12.0.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                           if (homeCtrl.task.value == element)
                             const Icon(

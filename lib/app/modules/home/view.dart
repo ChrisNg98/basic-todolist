@@ -35,7 +35,8 @@ class HomePage extends GetView<HomeController> {
                 physics: const ClampingScrollPhysics(),
                 children: [
                   ...controller.tasks
-                      .map((element) => LongPressDraggable(
+                      .map(
+                        (element) => LongPressDraggable(
                           data: element,
                           onDragStarted: () => controller.changeDeleting(true),
                           onDraggableCanceled: (_, __) => controller.changeDeleting(false),
@@ -44,7 +45,9 @@ class HomePage extends GetView<HomeController> {
                             opacity: 0.8,
                             child: TaskCard(task: element),
                           ),
-                          child: TaskCard(task: element)))
+                          child: TaskCard(task: element),
+                        ),
+                      )
                       .toList(),
                   AddCard(),
                 ],
@@ -59,7 +62,11 @@ class HomePage extends GetView<HomeController> {
             () => FloatingActionButton(
               backgroundColor: controller.deleting.value ? Colors.red : Colors.blue,
               onPressed: () {
-                Get.to(() => AddDialog());
+                if (controller.tasks.isNotEmpty) {
+                  Get.to(() => AddDialog(), transition: Transition.downToUp);
+                } else {
+                  EasyLoading.showError('Please create your task type first');
+                }
               },
               child: Icon(controller.deleting.value ? Icons.delete : Icons.add),
             ),

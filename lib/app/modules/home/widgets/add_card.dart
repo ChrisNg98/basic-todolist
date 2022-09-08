@@ -23,7 +23,7 @@ class AddCard extends StatelessWidget {
       margin: EdgeInsets.all(3.0.percentWidth),
       child: InkWell(
           onTap: () async {
-            homeCtrl.editController.clear();
+            homeCtrl.editTextController.clear();
             homeCtrl.changeChipIndex(0);
             await Get.defaultDialog(
               titlePadding: EdgeInsets.symmetric(vertical: 5.0.percentWidth),
@@ -36,7 +36,7 @@ class AddCard extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 3.0.percentWidth),
                       child: TextFormField(
-                        controller: homeCtrl.editController,
+                        controller: homeCtrl.editTextController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Title',
@@ -81,7 +81,7 @@ class AddCard extends StatelessWidget {
                           int icon = icons[homeCtrl.chipIndex.value].icon!.codePoint;
                           String color = icons[homeCtrl.chipIndex.value].color!.toHex();
                           var task = Task(
-                            title: homeCtrl.editController.text,
+                            title: homeCtrl.editTextController.text,
                             icon: icon,
                             color: color,
                           );
