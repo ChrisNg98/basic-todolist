@@ -6,7 +6,8 @@ import 'package:get/get.dart';
 class HomeBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(
+    Get.lazyPut<HomeController>(
+      fenix: true,
       () => HomeController(
         taskRepository: TaskRepository(
           taskProvider: TaskProvider(),
