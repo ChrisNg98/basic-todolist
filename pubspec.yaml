@@ -45,8 +45,14 @@ dependencies:
   intl: ^0.17.0
 
 dev_dependencies:
+#  flutter_launcher_icons: ^0.10.0 # Uncomment this line to use the flutter_launcher_icons plugin
   flutter_test:
     sdk: flutter
+
+#flutter_icons: # Uncomment this section to use the flutter_launcher_icons plugin
+#  android: true
+#  ios: true
+#  image_path: "assets/icon/icon.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
