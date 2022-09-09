@@ -30,6 +30,7 @@ class AddCard extends StatelessWidget {
               titlePadding: EdgeInsets.symmetric(vertical: 5.0.percentWidth),
               radius: 15,
               title: 'Task Type',
+              titleStyle: GoogleFonts.combo(),
               content: Form(
                 key: homeCtrl.formKey,
                 child: Column(
