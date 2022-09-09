@@ -4,6 +4,7 @@ import 'package:basic_todolist/app/modules/detail/view.dart';
 import 'package:basic_todolist/app/modules/home/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class TaskCard extends StatelessWidget {
@@ -21,39 +22,6 @@ class TaskCard extends StatelessWidget {
         homeCtrl.changeTodos(task.todos ?? []);
         Get.to(() => DetailPage());
       },
-      // onTap: () async {
-      //   if (task.todos == null) {
-      //     await Get.defaultDialog(
-      //       titlePadding: EdgeInsets.symmetric(vertical: 5.0.percentWidth),
-      //       barrierDismissible: false,
-      //       radius: 15,
-      //       title: 'No Todos',
-      //       content: Padding(
-      //         padding: EdgeInsets.symmetric(horizontal: 3.0.percentWidth),
-      //         child: Text(
-      //           'Please add some todos to this task',
-      //           textAlign: TextAlign.center,
-      //           style: TextStyle(fontSize: 12.0.sp),
-      //         ),
-      //       ),
-      //       confirm: ElevatedButton(
-      //         style: ElevatedButton.styleFrom(
-      //           primary: blue,
-      //           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      //           minimumSize: const Size(100, 40),
-      //         ),
-      //         child: const Text('Confirm'),
-      //         onPressed: () {
-      //           Get.back();
-      //         },
-      //       ),
-      //     );
-      //   } else {
-      //     homeCtrl.taskSelected(task);
-      //     homeCtrl.changeTodos(task.todos ?? []);
-      //     Get.to(() => DetailPage());
-      //   }
-      // },
       child: Container(
         width: squareWidth / 2,
         height: squareWidth / 2,
@@ -72,12 +40,12 @@ class TaskCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //TODO change after finish TODO CRUD
             StepProgressIndicator(
-              totalSteps: 100,
-              currentStep: 80,
+              totalSteps: homeCtrl.isTodosEmpty(task) ? 1 : task.todos!.length,
+              currentStep: homeCtrl.totalCompletedTodos(task),
               size: 5,
               padding: 0,
+              roundedEdges: const Radius.circular(15),
               selectedGradientColor: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -106,14 +74,17 @@ class TaskCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12.0.sp,
                       fontWeight: FontWeight.bold,
+                      fontFamily: GoogleFonts.combo().fontFamily,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 2.0.percentWidth),
                   Text(
                     '${task.todos?.length ?? 0} Tasks',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
+                      fontFamily: GoogleFonts.combo().fontFamily,
                     ),
                   ),
                 ],

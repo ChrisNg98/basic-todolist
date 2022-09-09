@@ -7,6 +7,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AddCard extends StatelessWidget {
   AddCard({Key? key}) : super(key: key);
@@ -37,6 +38,9 @@ class AddCard extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 3.0.percentWidth),
                       child: TextFormField(
                         controller: homeCtrl.editTextController,
+                        style: TextStyle(
+                          fontFamily: GoogleFonts.combo().fontFamily,
+                        ),
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Title',
@@ -89,7 +93,10 @@ class AddCard extends StatelessWidget {
                           homeCtrl.addTask(task) ? EasyLoading.showSuccess('Create Success') : EasyLoading.showError('Duplicated Task');
                         }
                       },
-                      child: const Text('Confirm'),
+                      child: Text('Confirm',
+                          style: TextStyle(
+                            fontFamily: GoogleFonts.combo().fontFamily,
+                          )),
                     ),
                   ],
                 ),

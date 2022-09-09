@@ -7,7 +7,7 @@ class Todo extends Equatable {
   ///CONSTRUCTOR
   const Todo({
     required this.title,
-    this.completed = true,
+    this.completed = false,
   });
 
   Todo copyWith({

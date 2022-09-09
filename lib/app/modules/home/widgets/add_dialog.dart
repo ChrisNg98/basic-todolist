@@ -3,6 +3,7 @@ import 'package:basic_todolist/app/modules/home/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AddDialog extends StatelessWidget {
   final homeCtrl = Get.find<HomeController>();
@@ -54,7 +55,10 @@ class AddDialog extends StatelessWidget {
                   },
                   child: Text(
                     'Done',
-                    style: TextStyle(fontSize: 14.0.sp),
+                    style: TextStyle(
+                      fontSize: 14.0.sp,
+                      fontFamily: GoogleFonts.combo().fontFamily,
+                    ),
                   ),
                 ),
               ],
@@ -67,6 +71,7 @@ class AddDialog extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18.0.sp,
                 fontWeight: FontWeight.bold,
+                fontFamily: GoogleFonts.combo().fontFamily,
               ),
             ),
           ),
@@ -76,7 +81,10 @@ class AddDialog extends StatelessWidget {
               controller: homeCtrl.newTaskTextController,
               decoration: InputDecoration(
                 hintText: 'Enter your task',
-                hintStyle: TextStyle(fontSize: 14.0.sp),
+                hintStyle: TextStyle(
+                  fontSize: 14.0.sp,
+                  fontFamily: GoogleFonts.combo().fontFamily,
+                ),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey[400]!),
                 ),
@@ -88,7 +96,10 @@ class AddDialog extends StatelessWidget {
                 return null;
               },
               autofocus: true,
-              style: TextStyle(fontSize: 14.0.sp),
+              style: TextStyle(
+                fontSize: 14.0.sp,
+                fontFamily: GoogleFonts.combo().fontFamily,
+              ),
             ),
           ),
           Padding(
@@ -103,6 +114,7 @@ class AddDialog extends StatelessWidget {
               style: TextStyle(
                 fontSize: 14.0.sp,
                 color: Colors.grey,
+                fontFamily: GoogleFonts.combo().fontFamily,
               ),
             ),
           ),
@@ -117,7 +129,7 @@ class AddDialog extends StatelessWidget {
                         horizontal: 5.0.percentWidth,
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Row(
                             children: [
@@ -131,11 +143,16 @@ class AddDialog extends StatelessWidget {
                               SizedBox(
                                 width: 3.0.percentWidth,
                               ),
-                              Text(
-                                element.title,
-                                style: TextStyle(
-                                  fontSize: 12.0.sp,
-                                  fontWeight: FontWeight.bold,
+                              SizedBox(
+                                width: 80.0.percentWidth,
+                                child: Text(
+                                  element.title,
+                                  style: TextStyle(
+                                    fontSize: 12.0.sp,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: GoogleFonts.combo().fontFamily,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ],

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Todo List using GetX',
+      title: 'Todo Apps using GetX',
       home: const HomePage(),
       initialBinding: HomeBinding(),
       builder: EasyLoading.init(),
