@@ -1,6 +1,6 @@
 # basic_todolist
 
-A basic Todo Flutter project that implements GetX state management. This application is created starting from scratch and taught by Youtuber - Fullstack School (Youtube link - https://www.youtube.com/channel/UCWiC79M4FJ-Ylvk7lkk3n5A)
+A basic Todo Flutter project that implements GetX state management.
 
 Preview of the application
 ![305488564_1140684966796205_2496828943232811737_n](https://user-images.githubusercontent.com/101167187/189359242-cf676e32-8fbc-4458-80b6-b1d175337f26.jpg)
